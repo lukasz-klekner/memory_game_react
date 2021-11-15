@@ -4,12 +4,12 @@ import './App.css'
 import SingleCard from './components/SingleCard'
 
 const cardImages = [
-  { src: '/img/helmet-1.png' },
-  { src: '/img/potion-1.png' },
-  { src: '/img/ring-1.png' },
-  { src: '/img/scroll-1.png' },
-  { src: '/img/shield-1.png' },
-  { src: '/img/sword-1.png' },
+  { src: '/img/helmet-1.png', matched: false },
+  { src: '/img/potion-1.png', matched: false },
+  { src: '/img/ring-1.png', matched: false },
+  { src: '/img/scroll-1.png', matched: false },
+  { src: '/img/shield-1.png', matched: false },
+  { src: '/img/sword-1.png', matched: false },
 ]
 
 function App() {
@@ -40,7 +40,11 @@ function App() {
   useEffect(() => {
     if (firstChoice && secondChoice) {
       if (firstChoice.src === secondChoice.src) {
-        console.log('Success!')
+        setCards((prevState) =>
+          prevState.map((card) =>
+            card.src === firstChoice.src ? { ...card, matched: true } : card
+          )
+        )
         resetTurn()
       } else {
         console.log('Try again!')
