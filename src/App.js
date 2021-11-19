@@ -26,6 +26,8 @@ function App() {
 
     setCards(shuffledCards)
     setTurns(0)
+    setFirstChoice(null)
+    setSecondChoice(null)
   }
 
   const handleChoice = (card) => {
@@ -38,6 +40,8 @@ function App() {
     setTurns((prevTurn) => prevTurn + 1)
     setDisabled(false)
   }
+
+  useEffect(() => shuffledCards(), [])
 
   useEffect(() => {
     if (firstChoice && secondChoice) {
@@ -72,6 +76,7 @@ function App() {
           />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </div>
   )
 }
